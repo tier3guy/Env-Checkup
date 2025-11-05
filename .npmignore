@@ -1,0 +1,10 @@
+src/
+__tests__/
+eslint.config.ts
+envcheckup.config.json
+jest.config.ts
+tsconfig.json
+.prettierrc
+local/
+.husky/
+docs/
