@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkenv_checkup_docs=globalThis.webpackChunkenv_checkup_docs||[]).push([[583],{6866:(c,u,e)=>{e.r(u),e.d(u,{default:()=>h});var s=e(6540),n=e(6347);function h(){const c=(0,n.W6)();return(0,s.useEffect)(()=>{c.push("/docs/intro")},[c]),null}}}]);
