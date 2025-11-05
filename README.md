@@ -4,6 +4,14 @@
 
 ---
 
+## 📚 Documentation
+
+Looking for complete setup guides, configuration details, and command references?  
+👉 **Read the full documentation here:**  
+[https://tier3guy.github.io/Env-Checkup/docs/intro](https://tier3guy.github.io/Env-Checkup/docs/intro)
+
+---
+
 ## 📦 Overview
 
 `env-checkup` helps teams enforce consistent and safe environment configuration by:
@@ -25,9 +33,10 @@ npm install -g env-checkup
 
 # or as a dev dependency
 npm install -D env-checkup
-```
+````
 
 Run using:
+
 ```bash
 npx env-checkup init
 npx env-checkup validate
@@ -44,13 +53,16 @@ npx env-checkup init
 ```
 
 **What it does:**
-- Reads your `.env` file (or uses a default `.env` in project root)
-- Infers types automatically
-- Creates:
-  - `envcheck.config.json` — stores file paths
-  - `env.schema.json` — defines types and validation metadata
+
+* Reads your `.env` file (or uses a default `.env` in project root)
+* Infers types automatically
+* Creates:
+
+  * `envcheck.config.json` — stores file paths
+  * `env.schema.json` — defines types and validation metadata
 
 **Example Output:**
+
 ```
 📖 Reading .env file from: ./envs/.env
 ✅ Config JSON file initialized successfully!
@@ -66,11 +78,13 @@ npx env-checkup validate
 ```
 
 **What it does:**
-- Reads file paths from `envcheck.config.json`
-- Validates `.env` values against `env.schema.json`
-- Prints success, warnings, or errors
+
+* Reads file paths from `envcheck.config.json`
+* Validates `.env` values against `env.schema.json`
+* Prints success, warnings, or errors
 
 ✅ **Success Example:**
+
 ```
 🧩 Loaded 8 environment variables
 📘 Schema loaded successfully
@@ -79,6 +93,7 @@ npx env-checkup validate
 ```
 
 ❌ **Failure Example:**
+
 ```
 ❌ Validation failed with 3 issue(s):
 
@@ -126,44 +141,44 @@ npx env-checkup validate
 
 ## 🧠 Schema Authoring Reference
 
-Once generated, you can **edit `env.schema.json` manually** to fine-tune validation rules.  
+Once generated, you can **edit `env.schema.json` manually** to fine-tune validation rules.
 This section documents **every available property** in your schema.
 
 ### 🧩 `TEnvSchemaField`
 
-| Property | Type | Description | Example |
-|-----------|------|--------------|----------|
-| `type` | string | Defines data type (see list below) | `"Boolean"`, `"Number"`, `"Url"`, `"Email"` |
-| `description` | string | Optional text explaining the variable | `"Database URL used for connection"` |
-| `required` | boolean | Whether the variable must exist | `true` |
-| `enum` | string[] \| number[] | Allowed values (for `Enum` type) | `["dev", "staging", "prod"]` |
-| `min` | number | Minimum numeric value | `0` |
-| `max` | number | Maximum numeric value | `65535` |
-| `minLength` | number | Minimum string/array length | `3` |
-| `maxLength` | number | Maximum string/array length | `50` |
-| `regex` | RegExp | Custom pattern check | `"^[A-Z]{3}-\\d{3}$"` |
-| `validate` | Function | Custom validator `(value) => boolean \| string` | `"validate": "(v) => v.startsWith('KEY_')"` |
-| `sensitive` | boolean | Hides value in logs | `true` |
-| `trim` | boolean | Trims whitespace before validation | `true` |
+| Property      | Type                | Description                                     | Example                                     |
+| ------------- | ------------------- | ----------------------------------------------- | ------------------------------------------- |
+| `type`        | string              | Defines data type (see list below)              | `"Boolean"`, `"Number"`, `"Url"`, `"Email"` |
+| `description` | string              | Optional text explaining the variable           | `"Database URL used for connection"`        |
+| `required`    | boolean             | Whether the variable must exist                 | `true`                                      |
+| `enum`        | string[] | number[] | Allowed values (for `Enum` type)                | `["dev", "staging", "prod"]`                |
+| `min`         | number              | Minimum numeric value                           | `0`                                         |
+| `max`         | number              | Maximum numeric value                           | `65535`                                     |
+| `minLength`   | number              | Minimum string/array length                     | `3`                                         |
+| `maxLength`   | number              | Maximum string/array length                     | `50`                                        |
+| `regex`       | RegExp              | Custom pattern check                            | `"^[A-Z]{3}-\\d{3}$"`                       |
+| `validate`    | Function            | Custom validator `(value) => boolean \| string` | `"validate": "(v) => v.startsWith('KEY_')"` |
+| `sensitive`   | boolean             | Hides value in logs                             | `true`                                      |
+| `trim`        | boolean             | Trims whitespace before validation              | `true`                                      |
 
 ---
 
 ### 📘 Supported Types
 
-| Type | Description | Example |
-|------|--------------|----------|
-| `String` | Default type for text values | `API_KEY=mykey` |
-| `Number` | Integer or decimal number | `TIMEOUT=5000` |
-| `Boolean` | `true`, `false`, `1`, `0` | `DEBUG=true` |
-| `Url` | Must match valid HTTP/HTTPS format | `DATABASE_URL=https://db.example.com` |
-| `Email` | Must match email format | `ADMIN_EMAIL=admin@example.com` |
-| `Port` | Integer between `0–65535` | `PORT=8080` |
-| `Enum` | One of defined values | `NODE_ENV=production` |
-| `Json` | Must be valid JSON | `CONFIG={"mode":"safe"}` |
-| `Array` | Comma-separated list | `ALLOWED_ORIGINS=http://a.com,http://b.com` |
-| `Date` | ISO-8601 date string | `START_DATE=2025-01-01T00:00:00Z` |
-| `Path` | Local or relative path | `LOG_PATH=./logs/app.log` |
-| `Custom` | Regex-based custom validation | `CODE=ABC-123` |
+| Type      | Description                        | Example                                     |
+| --------- | ---------------------------------- | ------------------------------------------- |
+| `String`  | Default type for text values       | `API_KEY=mykey`                             |
+| `Number`  | Integer or decimal number          | `TIMEOUT=5000`                              |
+| `Boolean` | `true`, `false`, `1`, `0`          | `DEBUG=true`                                |
+| `Url`     | Must match valid HTTP/HTTPS format | `DATABASE_URL=https://db.example.com`       |
+| `Email`   | Must match email format            | `ADMIN_EMAIL=admin@example.com`             |
+| `Port`    | Integer between `0–65535`          | `PORT=8080`                                 |
+| `Enum`    | One of defined values              | `NODE_ENV=production`                       |
+| `Json`    | Must be valid JSON                 | `CONFIG={"mode":"safe"}`                    |
+| `Array`   | Comma-separated list               | `ALLOWED_ORIGINS=http://a.com,http://b.com` |
+| `Date`    | ISO-8601 date string               | `START_DATE=2025-01-01T00:00:00Z`           |
+| `Path`    | Local or relative path             | `LOG_PATH=./logs/app.log`                   |
+| `Custom`  | Regex-based custom validation      | `CODE=ABC-123`                              |
 
 ---
 
@@ -240,10 +255,10 @@ Edit `envcheck.config.json` to customize behavior:
 }
 ```
 
-| Field | Description |
-|--------|--------------|
-| `strictMode` | Fails validation if `.env` has variables not in schema |
-| `exitOnWarning` | Treats warnings as errors (useful in CI/CD) |
+| Field           | Description                                            |
+| --------------- | ------------------------------------------------------ |
+| `strictMode`    | Fails validation if `.env` has variables not in schema |
+| `exitOnWarning` | Treats warnings as errors (useful in CI/CD)            |
 
 ---
 
@@ -268,26 +283,28 @@ npm run test
 
 ## 🧰 Tech Stack
 
-- **Language:** TypeScript (ESM)
-- **CLI Framework:** Commander.js
-- **Colors:** Chalk v5
-- **Testing:** Jest + ts-jest
-- **Packaging:** npm
+* **Language:** TypeScript (ESM)
+* **CLI Framework:** Commander.js
+* **Colors:** Chalk v5
+* **Testing:** Jest + ts-jest
+* **Packaging:** npm
 
 ---
 
 ## 🧑‍💻 Contributing
 
-1. Fork & clone the repo  
-2. Install dependencies  
+1. Fork & clone the repo
+2. Install dependencies
+
    ```bash
    npm install
    ```
-3. Run tests  
+3. Run tests
+
    ```bash
    npm run test
    ```
-4. Submit a PR 🚀  
+4. Submit a PR 🚀
 
 ---
 
@@ -299,8 +316,7 @@ MIT License © 2025 [Avinash Gupta]
 
 ## 💬 Author
 
-Built with ❤️ by **Avinash Gupta**  
-GitHub: [@tier3guy](https://github.com/tier3guy)  
+Built with ❤️ by **Avinash Gupta**
+GitHub: [@tier3guy](https://github.com/tier3guy)
 Twitter: [@tier3guy](https://twitter.com/tier3guy)
 
----
