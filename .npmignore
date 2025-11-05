@@ -1,6 +1,9 @@
 src/
 __tests__/
 eslint.config.ts
+envcheck.config.json
 jest.config.ts
 tsconfig.json
 .prettierrc
+local/
+.husky/

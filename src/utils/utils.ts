@@ -11,7 +11,7 @@ export function GetConfigFilePath(): string {
 }
 
 export function GetSchemaFileName(): string {
-  return "env.schema.json";
+  return "envcheckup.schema.ts";
 }
 
 export function ToRelativePosixPath(targetPath: string): string {

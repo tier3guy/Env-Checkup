@@ -1,14 +1,15 @@
 import path from "path";
 import chalk from "chalk";
-import { Command } from "commander";
-import { FileService } from "../../utils/file.js";
-import type { TInitCommandOptions } from "../../types.js";
 import {
-  GetBaseDirectoryName,
   GetConfigFilePath,
   GetSchemaFileName,
   ToRelativePosixPath,
+  GetBaseDirectoryName,
 } from "../../utils/utils.js";
+import { Command } from "commander";
+import { FileService } from "../../utils/file.js";
+import type { TInitCommandOptions } from "../../types.js";
+import { GenerateSchemaFile } from "../../core/schema-generator.js";
 
 export function InitCommand(): Command {
   const command = new Command();
@@ -36,25 +37,25 @@ export function InitCommand(): Command {
 }
 
 export async function RunInitCommand(options: TInitCommandOptions): Promise<void> {
-  console.log(chalk.cyanBright(">_ Initializing env-checkup ...."));
+  console.log(chalk.cyanBright("🚀 Initializing env-checkup ...."));
 
   const inputPath = options.env ?? GetDefaultEnvPath();
   const outputPath = options.output ?? GetDefaultEnvSchemaOutputPath();
   const configFilePath = GetConfigFilePath();
 
   if (!options.env)
-    console.log(chalk.dim(`>_ No --env flag provided. Using default: ${inputPath}`));
+    console.log(chalk.dim(`🧩 No --env flag provided. Using default: ${inputPath}`));
   if (!options.output)
-    console.log(chalk.dim(`>_ No --output flag provided. Using default: ${outputPath}`));
+    console.log(chalk.dim(`🧩 No --output flag provided. Using default: ${outputPath}`));
 
   const fileService = FileService.getInstance();
 
   // Create envcheck.config.json
   try {
     if (fileService.exists(configFilePath)) {
-      console.log(chalk.dim(">_ Clearing existing config JSON file ..."));
+      console.log(chalk.dim("🧹 Clearing existing config JSON file ..."));
       fileService.deleteFile(configFilePath);
-      console.log(chalk.dim(">_ Existing config JSON file deleted!"));
+      console.log(chalk.dim("🗑️ Existing config JSON file deleted!"));
     }
 
     const config = {
@@ -63,10 +64,14 @@ export async function RunInitCommand(options: TInitCommandOptions): Promise<void
     };
 
     fileService.writeJSON(configFilePath, config);
-    console.log(chalk.green(`>_ Config JSON file initialized successfully!`));
+    console.log(chalk.green(`✅ Config JSON file initialized successfully!`));
+    console.log(chalk.cyan(`📄 Created at: ${chalk.underline(configFilePath)}\n`));
   } catch (error) {
-    console.log(chalk.red(">_ Error creating config JSON file"), error);
+    console.log(chalk.red("❌ Error creating config JSON file"), error);
   }
+
+  // Generate Schema File
+  await GenerateSchemaFile(inputPath, outputPath);
 }
 
 export function GetDefaultEnvPath(): string {
@@ -76,5 +81,5 @@ export function GetDefaultEnvPath(): string {
 
 export function GetDefaultEnvSchemaOutputPath(): string {
   const baseDir = GetBaseDirectoryName();
-  return path.resolve(baseDir, "env.schema.json");
+  return path.resolve(baseDir, GetSchemaFileName());
 }

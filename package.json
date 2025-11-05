@@ -30,18 +30,20 @@
   "license": "ISC",
   "author": "tier3guy",
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "env-checkup": "./dist/cli/index.js"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
-    "format": "prettier --check .",
+    "format": "prettier --write .",
     "lint": "eslint . --ext .ts",
-    "test": "jest",
-    "verify": "npm run format && npm run lint && npm test",
+    "test": "jest --config jest.config.cjs",
+    "clean": "rimraf dist",
     "prepare": "husky",
-    "prepublishOnly": "npm run verify && npm run build",
+    "beautify": "npm run format && npm run lint",
+    "build": "npm run test && npm run beautify && npm run clean && tsc",
+    "prepublishOnly": "npm run build",
     "init": "npx tsx src/cli/index.ts init",
     "validate": "npx tsx src/cli/index.ts validate"
   },
@@ -72,6 +74,7 @@
   "dependencies": {
     "chalk": "^5.6.2",
     "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
     "winston": "^3.18.3"
   }
 }

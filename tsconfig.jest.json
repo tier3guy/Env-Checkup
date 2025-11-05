@@ -1,18 +1,13 @@
 {
-    "compilerOptions": {
-        "module": "CommonJS",
-        "target": "ESNext",
-        "isolatedModules": false,
-        "esModuleInterop": true,
-        "allowJs": true,
-        "noEmit": true,
-        "resolveJsonModule": true,
-        "types": [
-            "jest",
-            "node"
-        ]
-    },
-    "include": [
-        "__tests__"
-    ]
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ESNext",
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "types": ["jest", "node"]
+  },
+  "include": ["__tests__"]
 }

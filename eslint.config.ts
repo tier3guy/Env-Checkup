@@ -5,6 +5,9 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
+    ignores: ["node_modules/**", "dist/**", "local/**", ".husky/**"],
+  },
+  {
     files: ["**/*.{js,mjs,ts,mts,cts}"],
     plugins: { js },
     extends: ["js/recommended"],
