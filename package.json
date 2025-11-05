@@ -45,7 +45,8 @@
     "build": "npm run beautify && npm run clean && tsc",
     "prepublishOnly": "npm run build",
     "init": "npx tsx src/cli/index.ts init",
-    "validate": "npx tsx src/cli/index.ts validate"
+    "validate": "npx tsx src/cli/index.ts validate",
+    "docs": "cd ./docs && npm run start"
   },
   "lint-staged": {
     "*.{ts,js}": [
