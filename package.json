@@ -30,7 +30,9 @@
   "license": "ISC",
   "author": "tier3guy",
   "type": "module",
-  "main": "src/index.js",
+  "bin": {
+    "env-checkup": "./dist/cli/index.js"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
@@ -39,7 +41,9 @@
     "test": "jest",
     "verify": "npm run format && npm run lint && npm test",
     "prepare": "husky",
-    "prepublishOnly": "npm run verify && npm run build"
+    "prepublishOnly": "npm run verify && npm run build",
+    "init": "npx tsx src/cli/index.ts init",
+    "validate": "npx tsx src/cli/index.ts validate"
   },
   "lint-staged": {
     "*.{ts,js}": [
@@ -48,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/commander": "^2.12.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.0",
     "eslint-config-prettier": "^10.1.8",
@@ -62,5 +68,10 @@
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "winston": "^3.18.3"
   }
 }
