@@ -3,7 +3,7 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import { InitCommand } from "./commands/init.js";
-// import { ValidateCommand } from "./commands/validate.js";
+import { ValidateCommand } from "./commands/validate.js";
 
 const program = new Command();
 
@@ -18,6 +18,6 @@ program
 
 // Commands
 program.addCommand(InitCommand());
-// program.addCommand(ValidateCommand());
+program.addCommand(ValidateCommand());
 
 program.parse(process.argv);

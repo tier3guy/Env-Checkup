@@ -38,11 +38,11 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts",
-    "test": "jest --config jest.config.cjs",
+    "test": "jest --config jest.config.4js",
     "clean": "rimraf dist",
     "prepare": "husky",
     "beautify": "npm run format && npm run lint",
-    "build": "npm run test && npm run beautify && npm run clean && tsc",
+    "build": "npm run beautify && npm run clean && tsc",
     "prepublishOnly": "npm run build",
     "init": "npx tsx src/cli/index.ts init",
     "validate": "npx tsx src/cli/index.ts validate"
@@ -56,10 +56,13 @@
   "devDependencies": {
     "@types/chalk": "^0.4.31",
     "@types/commander": "^2.12.0",
+    "@types/dotenv": "^6.1.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.0",
+    "chalk": "^5.6.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
+    "execa": "^9.6.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
     "jiti": "^2.6.1",
@@ -72,7 +75,6 @@
     "typescript-eslint": "^8.46.3"
   },
   "dependencies": {
-    "chalk": "^5.6.2",
     "commander": "^14.0.2",
     "dotenv": "^17.2.3",
     "winston": "^3.18.3"

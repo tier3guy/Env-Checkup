@@ -3,6 +3,11 @@ export type TInitCommandOptions = {
   output: string | undefined;
 };
 
+export type TValidateCommandOptions = {
+  env: string | undefined;
+  schema: string | undefined;
+};
+
 export type TEnvConfig = {
   envPath?: string;
   outputSchemaPath?: string;

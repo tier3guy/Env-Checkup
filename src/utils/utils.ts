@@ -6,12 +6,12 @@ export function GetBaseDirectoryName(): string {
 }
 
 export function GetConfigFilePath(): string {
-  const configFilePath = path.resolve(GetBaseDirectoryName(), "envcheck.config.json");
+  const configFilePath = path.resolve(GetBaseDirectoryName(), "envcheckup.config.json");
   return configFilePath;
 }
 
 export function GetSchemaFileName(): string {
-  return "envcheckup.schema.ts";
+  return "envcheckup.schema.json";
 }
 
 export function ToRelativePosixPath(targetPath: string): string {

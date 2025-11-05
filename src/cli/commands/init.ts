@@ -37,6 +37,7 @@ export function InitCommand(): Command {
 }
 
 export async function RunInitCommand(options: TInitCommandOptions): Promise<void> {
+  console.log();
   console.log(chalk.cyanBright("🚀 Initializing env-checkup ...."));
 
   const inputPath = options.env ?? GetDefaultEnvPath();
@@ -53,9 +54,11 @@ export async function RunInitCommand(options: TInitCommandOptions): Promise<void
   // Create envcheck.config.json
   try {
     if (fileService.exists(configFilePath)) {
+      console.log();
       console.log(chalk.dim("🧹 Clearing existing config JSON file ..."));
       fileService.deleteFile(configFilePath);
-      console.log(chalk.dim("🗑️ Existing config JSON file deleted!"));
+      console.log(chalk.dim("🗑️  Existing config JSON file deleted!"));
+      console.log();
     }
 
     const config = {

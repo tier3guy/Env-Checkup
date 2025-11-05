@@ -8,7 +8,7 @@ export default defineConfig([
     ignores: ["node_modules/**", "dist/**", "local/**", ".husky/**"],
   },
   {
-    files: ["**/*.{js,mjs,ts,mts,cts}"],
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
     extends: ["js/recommended"],
     languageOptions: {
