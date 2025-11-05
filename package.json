@@ -1,6 +1,6 @@
 {
   "name": "env-checkup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight utility to validate and manage environment variables in Node.js projects with type safety and helpful error messages.",
   "keywords": [
     "env",
