@@ -1,0 +1,11 @@
+# Ignore documentation and license files
+CHANGELOG.md
+LICENSE.md
+README.md
+
+# Ignore build and dependency folders
+dist/
+node_modules/
+
+# Ignore environment files
+.env
