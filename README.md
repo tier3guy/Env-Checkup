@@ -300,7 +300,7 @@ MIT License © 2025 [Avinash Gupta]
 ## 💬 Author
 
 Built with ❤️ by **Avinash Gupta**  
-GitHub: [@AvinashGuptaDev](https://github.com/AvinashGuptaDev)  
-Twitter: [@theavinashgupta](https://twitter.com/theavinashgupta)
+GitHub: [@tier3guy](https://github.com/tier3guy)  
+Twitter: [@tier3guy](https://twitter.com/tier3guy)
 
 ---
