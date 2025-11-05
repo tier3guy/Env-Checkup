@@ -266,7 +266,7 @@ Env Checkup v1.0.1
 
 * [→ Getting Started](./getting-started.md)
 * [→ Configuration Options](./configuration.md)
-* [→ CLI Commands Overview](./commands/overview.md)
+* [→ CLI Commands Overview](./Commands/overview.md)
 
 Now that you’ve installed Env Checkup, let’s start validating your environment files 🎯
 

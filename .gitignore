@@ -3,3 +3,5 @@
 package-lock.json
 /local
 envcheckup.config.json
+/docs/node_modules
+/docs/build

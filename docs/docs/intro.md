@@ -270,6 +270,6 @@ Built with 💚 by [tier3guy](https://tier3guy.com) who was tired of losing hour
 
 * [GitHub Repository](https://github.com/tier3guy/Env-Checkup)
 * [NPM Package](https://www.npmjs.com/package/env-checkup)
-* [Documentation Home](../intro)
+* [Documentation Home](./intro.md)
 
 

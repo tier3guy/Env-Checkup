@@ -16,15 +16,16 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://tier3guy.com",
+  url: "https://tier3guy.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: "/Env-Checkup/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "tier3guy", // Usually your GitHub org/user name.
   projectName: "Env-Checkup", // Usually your repo name.
+  deploymentBranch: "gh-pages",
 
   onBrokenLinks: "throw",
 

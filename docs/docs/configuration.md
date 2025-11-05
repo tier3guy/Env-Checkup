@@ -142,5 +142,5 @@ npx env-checkup validate --ignore NODE_ENV,DEBUG
 ---
 
 Your configuration is now ready!
-Next: [→ CLI Commands Overview](./commands/overview.md)
+Next: [→ CLI Commands Overview](./Commands/overview.md)
 
