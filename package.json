@@ -1,6 +1,6 @@
 {
   "name": "env-checkup",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A lightweight utility to validate and manage environment variables in Node.js projects with type safety and helpful error messages.",
   "keywords": [
     "env",
@@ -43,7 +43,7 @@
     "prepare": "husky",
     "beautify": "npm run format && npm run lint",
     "build": "npm run beautify && npm run clean && tsc",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm version patch",
     "init": "npx tsx src/cli/index.ts init",
     "validate": "npx tsx src/cli/index.ts validate"
   },

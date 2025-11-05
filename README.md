@@ -1,149 +1,306 @@
 # 🌱 env-checkup
 
-> A lightweight CLI tool to **generate** and **validate** environment variable schemas for Node.js projects.
+> A lightweight CLI utility to validate and manage environment variables in Node.js projects — with type safety, schema generation, and helpful error messages.
 
 ---
 
-## ✨ Features
+## 📦 Overview
 
-- 🧩 Generate environment schema automatically from `.env` files  
-- 🔍 Validate `.env` against your defined schema  
-- 🧠 Supports multiple formats — `.js`, `.ts`, `.json`  
-- ⚙️ Strict and flexible validation (type, default, URL, port, JSON, etc.)  
-- 🧾 Perfect for CI/CD pipelines and production sanity checks  
+`env-checkup` helps teams enforce consistent and safe environment configuration by:
+
+✅ Generating a schema (`env.schema.json`) from your `.env` file  
+✅ Automatically creating a project config (`envcheck.config.json`)  
+✅ Validating your `.env` against that schema  
+✅ Supporting rich schema options — like `min`, `max`, `regex`, and `enum`  
+✅ Providing clear, colorized CLI output  
+✅ Preventing runtime issues from missing or invalid env vars  
 
 ---
 
 ## 🚀 Installation
 
 ```bash
+# Install globally
 npm install -g env-checkup
+
+# or as a dev dependency
+npm install -D env-checkup
 ```
 
-or use directly without installing globally:
-
-```bash
-npx env-checkup
-```
-
----
-
-## 🧱 Usage
-
-### 1️⃣ Initialize schema
-
-Automatically generate a schema from your `.env` file:
-
+Run using:
 ```bash
 npx env-checkup init
-```
-
-**Options:**
-
-| Flag | Description | Default |
-|------|--------------|----------|
-| `--files <paths...>` | Files to analyze | `.env` |
-| `--output <path>` | Output path for schema file | `./env.schema.js` |
-| `--format <type>` | Output format (`js`, `ts`, or `json`) | `js` |
-| `--overwrite` | Overwrite existing schema file | `false` |
-
-Example:
-
-```bash
-npx env-checkup init --files .env.local --format ts --output ./schema/env.schema.ts
-```
-
----
-
-### 2️⃣ Validate environment
-
-Validate your `.env` against a schema:
-
-```bash
-npx env-checkup validate
-```
-
-**Options:**
-
-| Flag | Description | Default |
-|------|--------------|----------|
-| `--schema <path>` | Path to schema file | `./env.schema.js` |
-| `--env <path>` | Path to environment file | `.env` |
-| `--strict` | Fail if extra vars not in schema | `false` |
-| `--show-passed` | Show variables that passed validation | `false` |
-| `--json` | Output result in JSON format | `false` |
-| `--warn-only` | Warn instead of failing | `false` |
-| `--ignore <keys>` | Comma-separated variables to ignore | `""` |
-| `--no-color` | Disable colored output | `false` |
-
-Example:
-
-```bash
-npx env-checkup validate --strict --json --ignore DEBUG,LOG_LEVEL
-```
-
----
-
-## 🧩 Example Schema
-
-`env.schema.js` (auto-generated):
-
-```js
-module.exports = {
-  PORT: { type: "port", required: true },
-  DATABASE_URL: { type: "url", required: true },
-  DEBUG: { type: "boolean", default: false },
-  CONFIG: { type: "json", required: false }
-};
-```
-
----
-
-## 🧠 Typical Workflow
-
-```bash
-# 1. Generate schema
-npx env-checkup init
-
-# 2. Review or edit env.schema.js manually
-
-# 3. Validate environment
 npx env-checkup validate
 ```
 
 ---
 
-## 🧰 Integration
+## 🧭 CLI Commands
 
-### 🔸 GitHub Actions / CI example
+### 🏗️ `init`
 
-```yaml
-- name: Validate Environment Variables
-  run: npx env-checkup validate --strict --json
+```bash
+npx env-checkup init
+```
+
+**What it does:**
+- Reads your `.env` file (or uses a default `.env` in project root)
+- Infers types automatically
+- Creates:
+  - `envcheck.config.json` — stores file paths
+  - `env.schema.json` — defines types and validation metadata
+
+**Example Output:**
+```
+📖 Reading .env file from: ./envs/.env
+✅ Config JSON file initialized successfully!
+✅ Schema file generated successfully: env.schema.json
 ```
 
 ---
 
-## 🛠️ Roadmap
+### 🔍 `validate`
 
-- [ ] Interactive `init` (choose types manually)
-- [ ] Multi-env file support (e.g., `.env.development`, `.env.production`)
-- [ ] Remote schema sync / lint integration
-- [ ] Optional YAML export
+```bash
+npx env-checkup validate
+```
+
+**What it does:**
+- Reads file paths from `envcheck.config.json`
+- Validates `.env` values against `env.schema.json`
+- Prints success, warnings, or errors
+
+✅ **Success Example:**
+```
+🧩 Loaded 8 environment variables
+📘 Schema loaded successfully
+
+✅ All environment variables are valid!
+```
+
+❌ **Failure Example:**
+```
+❌ Validation failed with 3 issue(s):
+
+ • PORT must be ≥ 0
+ • DATABASE_URL must be a valid URL
+ • NODE_ENV must be one of: development, staging, production
+```
 
 ---
 
-## 🤝 Contributing
+## 🧩 Generated Files
 
-Contributions, ideas, and PRs are welcome!  
-Please open an issue to discuss major changes.
+### 📄 envcheck.config.json
+
+```json
+{
+  "envPath": ".env",
+  "outputSchemaPath": "env.schema.json"
+}
+```
+
+### 📄 env.schema.json
+
+```json
+{
+  "DATABASE_URL": {
+    "type": "Url",
+    "required": true,
+    "description": "Database connection string"
+  },
+  "PORT": {
+    "type": "Port",
+    "min": 0,
+    "max": 65535,
+    "required": true
+  },
+  "DEBUG": {
+    "type": "Boolean",
+    "required": false
+  }
+}
+```
+
+---
+
+## 🧠 Schema Authoring Reference
+
+Once generated, you can **edit `env.schema.json` manually** to fine-tune validation rules.  
+This section documents **every available property** in your schema.
+
+### 🧩 `TEnvSchemaField`
+
+| Property | Type | Description | Example |
+|-----------|------|--------------|----------|
+| `type` | string | Defines data type (see list below) | `"Boolean"`, `"Number"`, `"Url"`, `"Email"` |
+| `description` | string | Optional text explaining the variable | `"Database URL used for connection"` |
+| `required` | boolean | Whether the variable must exist | `true` |
+| `enum` | string[] \| number[] | Allowed values (for `Enum` type) | `["dev", "staging", "prod"]` |
+| `min` | number | Minimum numeric value | `0` |
+| `max` | number | Maximum numeric value | `65535` |
+| `minLength` | number | Minimum string/array length | `3` |
+| `maxLength` | number | Maximum string/array length | `50` |
+| `regex` | RegExp | Custom pattern check | `"^[A-Z]{3}-\\d{3}$"` |
+| `validate` | Function | Custom validator `(value) => boolean \| string` | `"validate": "(v) => v.startsWith('KEY_')"` |
+| `sensitive` | boolean | Hides value in logs | `true` |
+| `trim` | boolean | Trims whitespace before validation | `true` |
+
+---
+
+### 📘 Supported Types
+
+| Type | Description | Example |
+|------|--------------|----------|
+| `String` | Default type for text values | `API_KEY=mykey` |
+| `Number` | Integer or decimal number | `TIMEOUT=5000` |
+| `Boolean` | `true`, `false`, `1`, `0` | `DEBUG=true` |
+| `Url` | Must match valid HTTP/HTTPS format | `DATABASE_URL=https://db.example.com` |
+| `Email` | Must match email format | `ADMIN_EMAIL=admin@example.com` |
+| `Port` | Integer between `0–65535` | `PORT=8080` |
+| `Enum` | One of defined values | `NODE_ENV=production` |
+| `Json` | Must be valid JSON | `CONFIG={"mode":"safe"}` |
+| `Array` | Comma-separated list | `ALLOWED_ORIGINS=http://a.com,http://b.com` |
+| `Date` | ISO-8601 date string | `START_DATE=2025-01-01T00:00:00Z` |
+| `Path` | Local or relative path | `LOG_PATH=./logs/app.log` |
+| `Custom` | Regex-based custom validation | `CODE=ABC-123` |
+
+---
+
+### 💡 Extended Field Examples
+
+#### 🔢 Numeric Ranges
+
+```json
+{
+  "PORT": { "type": "Port", "min": 1024, "max": 49151, "required": true }
+}
+```
+
+#### 🧩 Enum Validation
+
+```json
+{
+  "NODE_ENV": { "type": "Enum", "enum": ["development", "staging", "production"], "required": true }
+}
+```
+
+#### 📧 Email & URL Checks
+
+```json
+{
+  "ADMIN_EMAIL": { "type": "Email", "required": true },
+  "APP_URL": { "type": "Url", "required": true }
+}
+```
+
+#### 🔒 Sensitive Data
+
+```json
+{
+  "API_KEY": { "type": "String", "required": true, "sensitive": true }
+}
+```
+
+#### 🧠 Custom Regex Validation
+
+```json
+{
+  "BUILD_CODE": {
+    "type": "Custom",
+    "regex": "^[A-Z]{3}-[0-9]{4}$",
+    "description": "Build code format: ABC-1234"
+  }
+}
+```
+
+#### 🧰 Complex Validation with Functions (TypeScript schema only)
+
+```ts
+{
+  APP_ID: {
+    type: "Custom",
+    validate: (value) => value.startsWith("APP_") || "APP_ID must start with 'APP_'"
+  }
+}
+```
+
+---
+
+## ⚙️ Advanced Configuration
+
+Edit `envcheck.config.json` to customize behavior:
+
+```json
+{
+  "envPath": ".env",
+  "outputSchemaPath": "env.schema.json",
+  "strictMode": true,
+  "exitOnWarning": false
+}
+```
+
+| Field | Description |
+|--------|--------------|
+| `strictMode` | Fails validation if `.env` has variables not in schema |
+| `exitOnWarning` | Treats warnings as errors (useful in CI/CD) |
+
+---
+
+## 🧪 Testing
+
+To verify your setup:
+
+```bash
+npm run build
+npm link
+env-checkup init
+env-checkup validate
+```
+
+Or run tests with Jest:
+
+```bash
+npm run test
+```
+
+---
+
+## 🧰 Tech Stack
+
+- **Language:** TypeScript (ESM)
+- **CLI Framework:** Commander.js
+- **Colors:** Chalk v5
+- **Testing:** Jest + ts-jest
+- **Packaging:** npm
+
+---
+
+## 🧑‍💻 Contributing
+
+1. Fork & clone the repo  
+2. Install dependencies  
+   ```bash
+   npm install
+   ```
+3. Run tests  
+   ```bash
+   npm run test
+   ```
+4. Submit a PR 🚀  
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **ISC License** — see [LICENSE](./LICENSE) for details.
+MIT License © 2025 [Avinash Gupta]
 
 ---
 
-**Made with ❤️ for safer environment setups.**
+## 💬 Author
+
+Built with ❤️ by **Avinash Gupta**  
+GitHub: [@AvinashGuptaDev](https://github.com/AvinashGuptaDev)  
+Twitter: [@theavinashgupta](https://twitter.com/theavinashgupta)
+
+---
