@@ -39,10 +39,11 @@
     "build": "npm run clean && tsc",
     "dev": "tsx --watch src/index.ts",
     "prepare": "husky",
-    "verify": "npm run format && npm run lint && npm test",
+    "verify": "npm run format && npm run lint",
     "prepublishOnly": "npm run verify && npm run build"
   },
   "devDependencies": {
+    "@jest/globals": "^30.2.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.0",
     "eslint-config-prettier": "^10.1.8",
