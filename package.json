@@ -43,7 +43,7 @@
     "prepare": "husky",
     "beautify": "npm run format && npm run lint",
     "build": "npm run beautify && npm run clean && tsc",
-    "prepublishOnly": "npm run build && npm version patch",
+    "prepublishOnly": "npm run build",
     "init": "npx tsx src/cli/index.ts init",
     "validate": "npx tsx src/cli/index.ts validate"
   },
