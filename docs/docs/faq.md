@@ -15,6 +15,7 @@ Find quick answers to common questions about **Env Checkup**.
 Place your configuration file at the root of your project and name it **`envcheckup.config.json`**.
 
 Example:
+
 ```
 
 my-app/
@@ -23,7 +24,7 @@ my-app/
 ┣ envcheckup.config.json
 ┗ package.json
 
-````
+```
 
 ---
 
@@ -38,7 +39,7 @@ If no configuration file is found, Env Checkup uses its **default settings**:
   "strict": false,
   "ignore": []
 }
-````
+```
 
 You can still pass all options via CLI flags:
 
@@ -258,12 +259,10 @@ npm uninstall -g env-checkup
 
 If your issue isn’t listed here:
 
-* Check the [GitHub Issues](https://github.com/your-username/env-checkup/issues)
-* Open a new issue describing your problem
-* Include your `.envcheckup.config.json` and CLI command for context
+- Check the [GitHub Issues](https://github.com/your-username/env-checkup/issues)
+- Open a new issue describing your problem
+- Include your `.envcheckup.config.json` and CLI command for context
 
 ---
 
 Env Checkup is built to make your `.env` management simple, reliable, and team-friendly.
-
-

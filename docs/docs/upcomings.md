@@ -55,11 +55,13 @@ declare namespace NodeJS {
 ## 🧠 3️⃣ IDE Plugin Integration
 
 A VS Code extension to:
+
 - Auto-highlight invalid or missing environment variables
 - Show inline hints for variable types
 - Offer quick fixes (add to `.env.schema.json`)
 
 Example:
+
 ```
 ⚠️ JWT_SECRET missing in .env
 💡 Quick Fix → Add to schema
@@ -76,6 +78,7 @@ npx env-checkup sync
 ```
 
 Example output:
+
 ```
 New variable detected: REDIS_URL
 Would you like to add it to the schema? (y/n)
@@ -92,6 +95,7 @@ npx env-checkup validate --report ./logs/env-report.json
 ```
 
 Example report:
+
 ```json
 {
   "missing": ["JWT_SECRET"],
@@ -107,6 +111,7 @@ Example report:
 When running `init`, Env Checkup will automatically detect variable types from values in existing `.env` files.
 
 Example:
+
 ```
 PORT=4000      → number
 DEBUG=true     → boolean
@@ -120,9 +125,10 @@ No more manual input needed during schema generation.
 ## 🧩 7️⃣ Web Dashboard (Experimental)
 
 A minimal web interface to:
-- View all environment variables visually  
-- Track validation results across multiple projects  
-- Export or sync schemas from a central UI  
+
+- View all environment variables visually
+- Track validation results across multiple projects
+- Export or sync schemas from a central UI
 
 You’ll be able to run:
 
@@ -131,6 +137,7 @@ npx env-checkup dashboard
 ```
 
 Then open in your browser:
+
 ```
 http://localhost:5050
 ```
@@ -151,6 +158,7 @@ Define your own variable rules via config:
 ```
 
 Example usage:
+
 ```
 ⚠️ EMAIL does not contain '@'
 ❌ PORT must be greater than 0
@@ -160,8 +168,8 @@ Example usage:
 
 ## 🧭 9️⃣ Better CI/CD Integration
 
-- GitLab and Jenkins support  
-- Built-in summary output for CI logs  
+- GitLab and Jenkins support
+- Built-in summary output for CI logs
 - Exit code mapping for easy pipeline control
 
 ```bash
@@ -169,6 +177,7 @@ npx env-checkup validate --strict --ci
 ```
 
 Example CI summary:
+
 ```
 Env Checkup Summary:
 ✅ 5 valid
@@ -203,12 +212,12 @@ npx env-checkup validate --all
 
 ## 🧾 Future Commands (Under Research)
 
-| Command | Description |
-|----------|-------------|
-| `env-checkup sync` | Sync missing variables from `.env` to schema |
-| `env-checkup report` | Generate a detailed validation report in JSON or HTML |
+| Command                      | Description                                             |
+| ---------------------------- | ------------------------------------------------------- |
+| `env-checkup sync`           | Sync missing variables from `.env` to schema            |
+| `env-checkup report`         | Generate a detailed validation report in JSON or HTML   |
 | `env-checkup generate-types` | Create TypeScript definitions for environment variables |
-| `env-checkup dashboard` | Open local dashboard for env management |
+| `env-checkup dashboard`      | Open local dashboard for env management                 |
 
 ---
 
@@ -227,12 +236,12 @@ Or contribute directly via pull request 🚀
 
 ## 🏁 Summary
 
-| Category | Features |
-|-----------|-----------|
-| Validation Enhancements | Multi-schema, Auto Sync, Custom Validators |
-| Developer Experience | IDE Plugin, TypeScript Types |
-| CI/CD & Reporting | JSON Reports, Exit Codes, Pipeline Integration |
-| Advanced Features | Dashboard, Monorepo Support |
+| Category                | Features                                       |
+| ----------------------- | ---------------------------------------------- |
+| Validation Enhancements | Multi-schema, Auto Sync, Custom Validators     |
+| Developer Experience    | IDE Plugin, TypeScript Types                   |
+| CI/CD & Reporting       | JSON Reports, Exit Codes, Pipeline Integration |
+| Advanced Features       | Dashboard, Monorepo Support                    |
 
 ---
 

@@ -22,7 +22,7 @@ Here’s an example configuration file:
   "strict": true,
   "ignore": ["NODE_ENV", "DEBUG"]
 }
-````
+```
 
 ---
 
@@ -125,9 +125,9 @@ npx env-checkup validate --ignore NODE_ENV,DEBUG
 
 ## 🧠 Notes
 
-* `envcheckup.config.json` must be in the project root.
-* CLI flags always override values in the config file.
-* If no config file is found, default settings are used.
+- `envcheckup.config.json` must be in the project root.
+- CLI flags always override values in the config file.
+- If no config file is found, default settings are used.
 
 ---
 
@@ -143,4 +143,3 @@ npx env-checkup validate --ignore NODE_ENV,DEBUG
 
 Your configuration is now ready!
 Next: [→ CLI Commands Overview](./Commands/overview.md)
-

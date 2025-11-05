@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # ⚙️ Installation
 
-Installing **Env Checkup** is simple and flexible — you can set it up globally for system-wide use or locally per project.  
+Installing **Env Checkup** is simple and flexible — you can set it up globally for system-wide use or locally per project.
 
 Choose the installation method that best fits your workflow 👇
 
@@ -22,14 +22,14 @@ Node.js: ≥ 18.0.0
 npm: ≥ 8.0.0 (or Yarn ≥ 1.22.0)
 Operating System: macOS, Linux, or Windows
 
-````
+```
 
 You can verify your versions with:
 
 ```bash
 node -v
 npm -v
-````
+```
 
 ---
 
@@ -264,10 +264,8 @@ Env Checkup v1.0.1
 
 ## 🏁 Next Steps
 
-* [→ Getting Started](./getting-started.md)
-* [→ Configuration Options](./configuration.md)
-* [→ CLI Commands Overview](./Commands/overview.md)
+- [→ Getting Started](./getting-started.md)
+- [→ Configuration Options](./configuration.md)
+- [→ CLI Commands Overview](./Commands/overview.md)
 
 Now that you’ve installed Env Checkup, let’s start validating your environment files 🎯
-
-

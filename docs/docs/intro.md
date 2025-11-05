@@ -14,9 +14,10 @@ It ensures your team never misses critical environment variables again — in de
 ## 💡 Why Env Checkup?
 
 Environment variables are essential, but they can easily become messy:
-- Missing `.env` keys cause runtime errors  
-- Outdated `.env.example` files confuse new developers  
-- Typos lead to unpredictable bugs  
+
+- Missing `.env` keys cause runtime errors
+- Outdated `.env.example` files confuse new developers
+- Typos lead to unpredictable bugs
 
 Env Checkup solves all of this by enforcing consistency and validation.
 
@@ -24,7 +25,7 @@ Env Checkup solves all of this by enforcing consistency and validation.
 ✅ **Validates** keys against a schema  
 ✅ **Generates** schema automatically via CLI prompts  
 ✅ **Supports** CI/CD integration  
-✅ **Works** with any JavaScript or TypeScript project  
+✅ **Works** with any JavaScript or TypeScript project
 
 ---
 
@@ -38,7 +39,7 @@ Creates an environment schema interactively:
 
 ```bash
 npx env-checkup init
-````
+```
 
 You’ll be prompted to define your environment variables and their expected types:
 
@@ -200,16 +201,16 @@ npx env-checkup validate
 
 Use Env Checkup whenever:
 
-* You have multiple `.env` files
-* You onboard new developers frequently
-* You deploy across multiple environments
-* You want to catch missing configuration early
+- You have multiple `.env` files
+- You onboard new developers frequently
+- You deploy across multiple environments
+- You want to catch missing configuration early
 
 It’s especially useful for:
 
-* **Next.js / Node.js / Express** projects
-* **Monorepos** with shared environment variables
-* **CI/CD validation** before production builds
+- **Next.js / Node.js / Express** projects
+- **Monorepos** with shared environment variables
+- **CI/CD validation** before production builds
 
 ---
 
@@ -268,8 +269,6 @@ Built with 💚 by [tier3guy](https://tier3guy.com) who was tired of losing hour
 
 ## 🔗 Links
 
-* [GitHub Repository](https://github.com/tier3guy/Env-Checkup)
-* [NPM Package](https://www.npmjs.com/package/env-checkup)
-* [Documentation Home](./intro.md)
-
-
+- [GitHub Repository](https://github.com/tier3guy/Env-Checkup)
+- [NPM Package](https://www.npmjs.com/package/env-checkup)
+- [Documentation Home](./intro.md)

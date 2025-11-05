@@ -31,7 +31,7 @@ my-app/
 ┃ ┗ index.ts
 ┗ package.json
 
-````
+```
 
 ---
 
@@ -40,9 +40,10 @@ my-app/
 You can install Env Checkup **globally** (to use the CLI anywhere) or **locally** (per project).
 
 ### 🪴 Global Installation
+
 ```bash
 npm install -g env-checkup
-````
+```
 
 Once installed, you can run it directly:
 
@@ -248,18 +249,18 @@ Summary:
 
 ## 💡 Tips
 
-* Always include your `.env.schema.json` in version control
-* Add `.env` to `.gitignore`
-* Run validation before deploying your app
-* Share the schema file with your teammates
+- Always include your `.env.schema.json` in version control
+- Add `.env` to `.gitignore`
+- Run validation before deploying your app
+- Share the schema file with your teammates
 
 ---
 
 ## 🧭 Next Steps
 
-* Learn more about [Configuration](./configuration.md)
-* Explore available [CLI Commands](/docs/Commands/commands-overview)
-* Check out [FAQ](./faq.md) for common troubleshooting
+- Learn more about [Configuration](./configuration.md)
+- Explore available [CLI Commands](/docs/Commands/commands-overview)
+- Check out [FAQ](./faq.md) for common troubleshooting
 
 ---
 
@@ -281,11 +282,11 @@ This ensures the app only runs if `.env` is valid.
 
 | Step | Command                    | Description                         |
 | ---- | -------------------------- | ----------------------------------- |
-| 1️⃣  | `npx env-checkup init`     | Generate schema interactively       |
-| 2️⃣  | `npx env-checkup validate` | Validate `.env` files               |
-| 3️⃣  | `--strict`                 | Fail build if variables are missing |
-| 4️⃣  | `--schema`                 | Custom schema file path             |
-| 5️⃣  | `--dir`                    | Validate from specific directory    |
+| 1️⃣   | `npx env-checkup init`     | Generate schema interactively       |
+| 2️⃣   | `npx env-checkup validate` | Validate `.env` files               |
+| 3️⃣   | `--strict`                 | Fail build if variables are missing |
+| 4️⃣   | `--schema`                 | Custom schema file path             |
+| 5️⃣   | `--dir`                    | Validate from specific directory    |
 
 ---
 
@@ -295,4 +296,3 @@ This ensures the app only runs if `.env` is valid.
 You can now ensure every developer and every environment stays consistent — no more “missing `.env` variable” surprises.
 
 Next: [Configuration →](./configuration.md)
-
